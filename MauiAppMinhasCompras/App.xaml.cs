@@ -10,7 +10,7 @@ namespace MauiAppMinhasCompras
         {
             get
             {
-                if (Db == null)
+                if (_db == null)
                 {
                     string path = Path.Combine(
                         Environment.GetFolderPath(
