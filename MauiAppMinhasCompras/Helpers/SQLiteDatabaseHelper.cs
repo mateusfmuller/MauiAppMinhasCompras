@@ -7,7 +7,7 @@ namespace MauiAppMinhasCompras.Helpers
     {
         readonly SQLiteAsyncConnection _conn;
 
-        public SQLiteDatabaseHelper(string path) 
+        public SQLiteDatabaseHelper(string path)
         {
             _conn = new SQLiteAsyncConnection(path);
             _conn.CreateTableAsync<Produto>().Wait();
@@ -32,19 +32,16 @@ namespace MauiAppMinhasCompras.Helpers
             return _conn.Table<Produto>().DeleteAsync(i => i.Id == id);
         }
 
-        public Task<List<Produto>> GetAll() 
+        public Task<List<Produto>> GetAll()
         {
             return _conn.Table<Produto>().ToListAsync();
         }
 
-        public Task<List<Produto>> Search(string q) 
+        public Task<List<Produto>> Search(string q)
         {
             string sql = "SELECT * FROM Produto WHERE descricao LIKE '%" + q + "%'";
 
             return _conn.QueryAsync<Produto>(sql);
         }
-
-
-
     }
 }
